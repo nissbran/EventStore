@@ -116,7 +116,7 @@ namespace EventStore.Core.Tests.Helpers
                 ExternalTcpEndPoint, "ExTCP SECURE ENDPOINT:", ExternalTcpSecEndPoint, "ExHTTP ENDPOINT:",
                 ExternalHttpEndPoint);
 
-            Node = new ClusterVNode(Db, singleVNodeSettings, infoController: new InfoController(null, ProjectionType.None), subsystems: subsystems, gossipSeedSource: new KnownEndpointGossipSeedSource(gossipSeeds));
+            Node = new ClusterVNode(Db, singleVNodeSettings, infoController: new InfoController(null, ProjectionType.None, Guid.Empty), subsystems: subsystems, gossipSeedSource: new KnownEndpointGossipSeedSource(gossipSeeds));
             Node.ExternalHttpService.SetupController(new TestController(Node.MainQueue));
         }
 

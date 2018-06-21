@@ -1422,7 +1422,7 @@ namespace EventStore.Core
                     _alwaysKeepScavenged,
                     _gossipOnSingleNode,
                     _skipIndexScanOnReads);
-            var infoController = new InfoController(options, _projectionType);
+            var infoController = new InfoController(options, _projectionType, _vNodeSettings.NodeInfo.InstanceId);
 
             _log.Info("{0,-25} {1}", "INSTANCE ID:", _vNodeSettings.NodeInfo.InstanceId);
             _log.Info("{0,-25} {1}", "DATABASE:", _db.Config.Path);

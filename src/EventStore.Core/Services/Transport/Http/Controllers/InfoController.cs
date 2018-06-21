@@ -22,12 +22,14 @@ namespace EventStore.Core.Services.Transport.Http.Controllers
 
         private readonly IOptions _options;
         private readonly ProjectionType _projectionType;
+        private readonly Guid _nodeInstanceId;
         private VNodeState _currentState;
 
-        public InfoController(IOptions options, ProjectionType projectionType)
+        public InfoController(IOptions options, ProjectionType projectionType, Guid nodeInstanceId)
         {
             _options = options;
             _projectionType = projectionType;
+            _nodeInstanceId = nodeInstanceId;
         }
 
         public void Subscribe(IHttpService service)
@@ -49,7 +51,8 @@ namespace EventStore.Core.Services.Transport.Http.Controllers
             {
                 ESVersion = VersionInfo.Version,
                 State = _currentState.ToString().ToLower(),
-                ProjectionsMode = _projectionType
+                ProjectionsMode = _projectionType,
+                InstanceId = _nodeInstanceId
             }),
             HttpStatusCode.OK,
             "OK",
